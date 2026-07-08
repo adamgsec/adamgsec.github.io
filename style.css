@@ -6,13 +6,11 @@ body {
     background: #fdfdfd;
     color: #222;
 }
-
 .page {
     max-width: 720px;
     margin: 60px auto;
     padding: 0 20px;
 }
-
 /* Header */
 .site-header {
     display: flex;
@@ -20,68 +18,56 @@ body {
     align-items: baseline;
     margin-bottom: 40px;
 }
-
 .site-title {
     font-size: 28px;
     font-weight: 600;
     margin: 0;
 }
-
 .site-nav a {
     margin-left: 16px;
     text-decoration: none;
     color: #555;
     font-size: 14px;
 }
-
 .site-nav a:hover {
     color: #000;
 }
-
 /* Intro */
 .intro {
     margin-bottom: 40px;
 }
-
 .intro p {
     margin: 0;
     font-size: 15px;
     line-height: 1.7;
 }
-
 /* Year blocks */
 .year-block {
     margin-bottom: 32px;
 }
-
 .year-block h2 {
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 8px;
 }
-
 .post-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-
 .post-list li {
     display: flex;
     justify-content: space-between;
     font-size: 14px;
     padding: 4px 0;
 }
-
 .post-title {
     color: #333;
 }
-
 .post-date {
     color: #999;
     font-size: 12px;
 }
-
 /* Footer */
 .site-footer {
     margin-top: 40px;
@@ -89,4 +75,97 @@ body {
     border-top: 1px solid #eee;
     font-size: 12px;
     color: #777;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.site-footer span:first-child::after {
+    content: "·";
+    margin-left: 8px;
+    color: #ccc;
+}
+
+/* ============================= */
+/* Tablet: 768px and below       */
+/* ============================= */
+@media (max-width: 768px) {
+    .page {
+        margin: 40px auto;
+        padding: 0 24px;
+    }
+    .site-title {
+        font-size: 24px;
+    }
+    .site-nav a {
+        margin-left: 12px;
+        font-size: 13px;
+    }
+}
+
+/* ============================= */
+/* Mobile: 480px and below       */
+/* ============================= */
+@media (max-width: 480px) {
+    .page {
+        margin: 24px auto;
+        padding: 0 16px;
+    }
+
+    /* Stack header instead of forcing it side-by-side */
+    .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 28px;
+    }
+    .site-title {
+        font-size: 22px;
+    }
+    .site-nav {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .site-nav a {
+        margin-left: 0;
+        margin-right: 14px;
+        font-size: 13px;
+    }
+
+    .intro {
+        margin-bottom: 28px;
+    }
+    .intro p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .year-block {
+        margin-bottom: 24px;
+    }
+
+    /* Stack title/date on very small screens for readability */
+    .post-list li {
+        flex-direction: column;
+        gap: 2px;
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .post-date {
+        font-size: 11px;
+    }
+
+    /* Stack footer lines cleanly on mobile */
+    .site-footer {
+        margin-top: 28px;
+        padding-top: 16px;
+        font-size: 11px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    .site-footer span:first-child::after {
+        content: "";
+        margin-left: 0;
+    }
 }
