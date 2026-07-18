@@ -1,4 +1,7 @@
 /* Base layout */
+html {
+    scroll-behavior: smooth;
+}
 body {
     margin: 0;
     padding: 0;
@@ -13,6 +16,9 @@ body {
 }
 .page-wide {
     max-width: 860px;
+}
+.page-blog {
+    max-width: 980px;
 }
 /* Header */
 .site-header {
@@ -165,7 +171,7 @@ body {
     margin-bottom: 40px;
 }
 .accolades-heading {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
     margin: 0 0 20px;
     color: #222;
@@ -257,6 +263,170 @@ body {
     color: #999;
     font-size: 12px;
 }
+/* Blog post layout with side navigation */
+.post-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 56px;
+}
+.toc {
+    width: 200px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 40px;
+}
+.toc-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #999;
+    margin-bottom: 12px;
+}
+.toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid #eee;
+}
+.toc a {
+    display: block;
+    padding: 14px 0 14px 14px; 
+    margin-left: -1px;
+    border-left: 2px solid transparent;
+    font-size: 14px;             
+    color: #666;
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.toc a:hover {
+    color: #a8392d;
+    border-left-color: #a8392d;
+    transform: translateX(2px);
+}
+.post-content {
+    flex: 1;
+    min-width: 0;
+    max-width: 640px;
+}
+.post-eyebrow {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 10px;
+}
+.post-content h1 {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 32px;
+    color: #222;
+}
+.post-content h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 40px 0 12px;
+    color: #222;
+    scroll-margin-top: 24px;
+}
+.post-content h2:first-of-type {
+    margin-top: 0;
+}
+.post-content p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: #444;
+    margin: 0 0 16px;
+}
+.post-content pre {
+    background: #f7f6f3;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 16px 20px;
+    overflow-x: auto;
+    margin: 0 0 20px;
+}
+.post-content pre code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px;
+    color: #444;
+    background: none;
+    padding: 0;
+}
+/* Table captions */
+.post-content p.table-caption {
+    margin: 6px 0 32px;
+    font-size: 14px;
+    font-style: italic;
+    color: #999;
+    text-align: center;
+}
+
+/* Images + captions */
+.post-figure {
+    margin: 24px auto 28px;
+    text-align: center;
+}
+.post-figure img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 1px solid #eee;
+}
+.post-figure figcaption {
+    margin-top: 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: #999;
+    text-align: center;
+}
+
+/* Fallback: centers any plain <img> dropped directly into a post,
+   even without a <figure> wrapper */
+.post-content img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+.ref-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.ref-list li {
+    border-bottom: 1px solid #f2f2f2;
+}
+.ref-list li:last-child {
+    border-bottom: none;
+}
+.ref-list a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 4px;
+    margin: 0 -4px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #444;
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.ref-list a::before {
+    content: "↗";
+    color: #a8392d;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+.ref-list a:hover {
+    background: #fdfaf9;
+    color: #a8392d;
+    transform: translateX(4px);
+}
 /* Footer */
 .site-footer {
     margin-top: 40px;
@@ -274,6 +444,90 @@ body {
     margin-left: 8px;
     color: #ccc;
 }
+
+/* Post tables */
+.table-wrap {
+    margin: 24px 0 15px;   /* was 24px 0 28px — bottom margin now handled by the caption below */
+    overflow-x: auto;
+    border: 1px solid #eee;
+    border-radius: 10px;
+}
+.post-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+.post-table thead th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #999;
+    background: #f7f6f3;
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+}
+.post-table tbody td {
+    padding: 12px 16px;
+    color: #444;
+    border-bottom: 1px solid #f2f2f2;
+    vertical-align: top;
+}
+.post-table tbody tr:last-child td {
+    border-bottom: none;
+}
+.post-table tbody tr {
+    transition: background 0.2s ease;
+}
+.post-table tbody tr:hover {
+    background: #fdfaf9;
+}
+.post-table td code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    background: #fbeae7;
+    color: #a8392d;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.post-list li {
+    padding: 0;
+    border-bottom: 1px solid #f2f2f2;
+}
+.post-list li:last-child {
+    border-bottom: none;
+}
+.post-list a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 280px;
+    padding: 10px 4px;
+    margin: 0 -4px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.post-list a:hover {
+    background: #fdfaf9;
+    transform: translateX(4px);
+}
+.post-title {
+    color: #333;
+}
+.post-list a:hover .post-title {
+    color: #a8392d;
+}
+.post-date {
+    color: #999;
+    font-size: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
 /* Animations */
 @keyframes riseIn {
     from { opacity: 0; transform: translateY(10px); }
@@ -286,6 +540,23 @@ body {
     30% { transform: rotate(14deg); }
     40% { transform: rotate(-4deg); }
     50% { transform: rotate(10deg); }
+}
+/* ============================= */
+/* Sidebar collapse: 900px and below */
+/* ============================= */
+@media (max-width: 900px) {
+    .page-blog {
+        max-width: 720px;
+    }
+    .post-layout {
+        display: block;
+    }
+    .toc {
+        display: none;
+    }
+    .post-content {
+        max-width: none;
+    }
 }
 /* ============================= */
 /* Tablet: 768px and below       */
@@ -367,6 +638,16 @@ body {
     .timeline-date {
         font-size: 11px;
     }
+    .post-content h1 {
+        font-size: 24px;
+    }
+    .post-content h2 {
+        font-size: 17px;
+        margin-top: 32px;
+    }
+    .post-content p {
+        font-size: 14px;
+    }
     .year-block {
         margin-bottom: 24px;
     }
@@ -390,5 +671,11 @@ body {
     .site-footer span:first-child::after {
         content: "";
         margin-left: 0;
+    }
+.post-list a {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        padding: 8px 4px;
     }
 }
