@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adamgsec | Understanding Cookie Security Attributes</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="../favicon.ico">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+</head>
+<body>
+    <div class="page page-blog">
+        <header class="site-header">
+            <a href="../index.html" class="site-title">adamgsec</a>
+            <nav class="site-nav">
+                <a href="../index.html">Home</a>
+                <a href="../acolades.html">Acolades & Certifications</a>
+            </nav>
+        </header>
+        <main class="post-layout">
+            <aside class="toc">
+                <span class="toc-label">On this page</span>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#what-are-the-attributes">What are the Security Attributes</a></li>
+                    <li><a href="#what-is-the-impact">What is the Impact?</a></li>
+                    <li><a href="#identifying-the-attributes">Identifying these Attributes</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                    <li><a href="#references">References</a></li>
+                </ul>
+            </aside>
+            <article class="post-content">
+                <span class="post-eyebrow">JUL 05, 2026</span>
+                <h1>Understanding Cookie Security Attributes: A Technical Insight</h1>
+
+                <h2 id="introduction">Introduction</h2>
+                <p>Security and software functionality are two of the biggest components of modern-day web design, and finding the right balance between them is essential for many organisations, particularly those operating in high-value sectors such as healthcare and finance, where a single misconfiguration can expose sensitive data and lead to real world consequences.</p>
+
+                <p>For businesses, this balance isn't just a technical concern. It is also a commercial one. A data breach doesn't only mean lost information, but it means regulatory fines, reputational damages to the business, loss of customer trust, and in some cases, legal liability that can outlast the technical remediation by years. 
+                
+                <p>Development teams are under constant pressure to ship features and functionality quickly, and security controls that feel invisible or "just work" in the background are far more likely to survive that pressure than ones that get in the way of functionality.</p> 
+                    
+                <p>Cookies are a good example of this tension. They're a small, unassuming piece of web infrastructure, but they're also responsible for holding session state, authentication tokens, and other sensitive data, which makes them a high-value target if left improperly secured.</p>
+
+                <p>Cookie security attributes aim to stop this. They're a lightweight, largely invisible layer of defence that, when configured correctly, closes off entire classes of common attacks without requiring any change to how the application actually functions for the end user. 
+                    That's precisely what makes them valuable from a business perspective. They provide strong security with minimal disruption to the product roadmap.</p>
+
+                <p>In this post, we'll break down what these attributes actually do, walk through how to identify when a cookie is misconfigured, and cover practical mitigation strategies that development teams can apply without slowing down delivery.</p>
+
+                <h2 id="what-are-the-attributes">What are the Security Attributes</h2>
+                <p>Cookies don't come with strong protections by default. Individually, they're just a small piece of text sent back and forth between browser and server, with no inherent safeguards against being read by scripts, intercepted in transit, or replayed from a malicious site.</p> 
+                
+                <p>The attributes below are optional flags that can be set when a cookie is created, and each one closes off a specific way that a cookie could otherwise be abused.</p>
+
+                <p>None of them require rewriting application logic, and most can be added with a single line in the server's response headers, which makes them one of the quickest wins available for improving a site's security posture. More on this later.</p>
+                
+                <p>Please see the table below outlining the security attributes and their purpose:</p>
+		<div class="table-wrap">
+    <table class="post-table">
+        <thead>
+            <tr>
+                <th>Attribute</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Secure</code></td>
+                <td>The cookie can only be sent over HTTPS.</td>
+            </tr>
+            <tr>
+                <td><code>HttpOnly</code></td>
+                <td>The cookie cannot be accessed via JavaScript.</td>
+            </tr>
+            <tr>
+                <td><code>SameSite</code></td>
+                <td>Restricts transmission of cookies in requests that originate from a different site.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p class="table-caption">Table 1: Core cookie security attributes and their purpose</p>
+<p>Each of these attributes can be set independently, but in practice they're strongest when combined. A cookie with all three set is protected against interception over insecure connections, access via injected scripts, and being silently attached to cross-site requests.</p>
+                <h2 id="what-is-the-impact">What is the Impact?</h2>
+                <p>Each attribute defends against a distinct attack vector, and omitting any one of them reopens that specific weakness, regardless of how well the other two are configured. Understanding what's actually at risk with each one makes it much easier to prioritise fixes and explain the "why" behind a security review finding.</p>
+                
+                <p><strong>Secure:</strong> Without this flag, a cookie can be sent over plain HTTP as well as HTTPS. This means unencrypted. On networks an attacker can observe, for example, public Wi-Fi, a compromised router, or a basic adversary-in-the-middle position, allows the cookie to be intercepted by the attacker in transit. If that cookie holds a session token, the attacker can hijack the session outright, bypassing standard authentication methods.</p>
+                
+                <p><strong>HttpOnly:</strong> Without this flag, a cookie is readable by JavaScript running on the page via <code>document.cookie</code>. This becomes a serious problem if the site has a cross-site scripting (XSS) vulnerability anywhere. Injected scripts can simply read the cookie and exfiltrate it to an attacker-controlled server. <code>HttpOnly</code> doesn't fix the underlying XSS bug, but it does stop that bug from being able to steal session cookies specifically.</p>
+                
+               <p><strong>SameSite:</strong> Without this flag (or set to a weak value), a cookie is attached to requests regardless of which site initiated them. This is what makes cross-site request forgery (CSRF) possible. A malicious page can trigger a request to your application, and the browser will happily attach the user's existing session cookie, making the request look legitimate. A properly set <code>SameSite</code> value prevents the cookie from being sent in that cross-origin context in the first place.</p>
+
+               <p>Unlike the other attributes, <code>SameSite</code> itself isn't a simple on/off switch. It takes one of three values, and the difference between them matters.</p> 
+                <p>These values are shown in the table below:</p>
+        <div class="table-wrap">
+            <table class="post-table">
+                <thead>
+                    <tr>
+                        <th>Value</th>
+                        <th>Sends cookie on</th>
+                        <th>Trade-off</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>Strict</code></td>
+                        <td>Same-site requests only</td>
+                        <td>Strongest CSRF protection, but cookie is withheld even on the first click from an external link, which can silently log a user out</td>
+                    </tr>
+                    <tr>
+                        <td><code>Lax</code></td>
+                        <td>Same-site requests, plus top-level navigations (e.g. clicking a link)</td>
+                        <td>Browser default when unset; blocks most CSRF vectors without breaking normal link-clicking</td>
+                    </tr>
+                    <tr>
+                        <td><code>None</code></td>
+                        <td>All requests, same-site or cross-site</td>
+                        <td>Pre-<code>SameSite</code> behaviour; only for genuine cross-site needs (e.g. embedded iframes), and must be paired with <code>Secure</code> or the cookie is rejected</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="table-caption">Table 2: SameSite Values and their Purpose</p>
+                <p>For most applications, <strong>Lax</strong> is the preferred default. it closes off the majority of CSRF vectors while keeping normal navigation and functionality working smoothly.</p> 
+                <p><strong>Strict</strong> is worth using for highly sensitive actions, such as cookies tied to banking transactions or account changes, where the minor usability cost is an acceptable trade for maximum protection.</p>
+                <p><strong>None</strong> should be treated as the exception rather than the rule, used only when there's a genuine cross-site embedding requirement. However, it is worth noting that this is rarely the case, and in most times, it is bad practice.</p>
+                
+            <h2 id="identifying-the-attributes">Identifying These Attributes in the Wild</h2>
+            <p>Where you'll find these attributes set and where you'll notice they're missing depends on the tool you're looking through. Two of the most common places are an HTTP proxy and the browser's own developer tools, and each surfaces slightly different information.</p>
+            <p>In a proxy tool like Burp Suite, cookie attributes are visible directly in the raw <code>Set-Cookie</code> response header, before the browser has done anything with them. This is often the fastest way to spot a missing attribute, since it's right there in plain text:</p>
+            <pre><code>HTTP/1.1 200 OK
+            Content-Type: text/html; charset=UTF-8
+            Set-Cookie: session_id=a3f9d8e12b; Path=/; Secure; HttpOnly; SameSite=Lax
+            Set-Cookie: theme=dark; Path=/
+            Content-Length: 3821</code></pre>
+            <p>Notice the difference between the two cookies here. The <code>session_id</code> cookie has all three attributes set correctly. The <code>theme</code> cookie has none of them, which is a reasonable choice for a low value preference cookie like this, but would be a red flag if it were holding a session token or anything authentication-related instead. Reviewing every <code>Set-Cookie</code> header this way, one by one, is usually how these misconfigurations get caught during an assessment.</p>
+            <p>In the browser itself, Chrome and Firefox's developer tools show cookies in a structured table rather than raw headers, under the <strong>Application</strong> tab in Chrome (or <strong>Storage</strong> in Firefox). Each cookie is broken into its own row with dedicated columns, which makes it easy to scan a whole page's cookies at a glance:</p>
+            <div class="table-wrap">
+            <table class="post-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Secure</th>
+                        <th>HttpOnly</th>
+                        <th>SameSite</th>
+                     </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>session_id</code></td>
+                        <td>a3f9d8e12b</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>Lax</td>
+                    </tr>
+                    <tr>
+                        <td><code>theme</code></td>
+                        <td>dark</td>
+                        <td></td>
+                        <td></td>
+                        <td>None</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="table-caption">Table 3: Identifying Cookie Security Attributes via Developer Tools</p>
+        <p>The blank cells in the <code>theme</code> row are the same gap seen in the raw header. The checkbox columns simply reflect whether each attribute was present on the <code>Set-Cookie</code> header that created the cookie.</p>
+        <p>Where and how a cookie is set also matters for best practice. Cookies should always be set server-side via the <code>Set-Cookie</code> response header, rather than through client-side JavaScript (<code>document.cookie</code>), since attributes like <code>HttpOnly</code> can't be applied to a cookie set that way. The whole point of the flag is to block script access, so a script setting the cookie in the first place defeats it.</p>
+            <p>Most backend frameworks also expose cookie attributes as configuration options or middleware defaults, which is worth setting at that level once rather than relying on every individual route to remember to add them manually.</p>
+        
+        <h2 id="conclusion">Conclusion</h2>
+               <p>Cookie security attributes are a small piece of configuration with an outsized return. Three flags, each addressing a distinct attack vector, that can be set without touching application logic or disrupting the product roadmap. For businesses operating in high-value sectorsis exactly the kind of security control that's easy to justify and, more importantly, easy to actually ship. Getting them right isn't about perfect security. it's about closing off the easy, well-documented wins so effort can be spent on the harder remediation problems.</p>
+                
+                <h2 id="references">References</h2>
+               <ul class="ref-list">
+                    <li><a href="https://owasp.org/www-community/controls/SecureCookieAttribute" target="_blank" rel="noopener">Secure Cookie Attribute | OWASP Foundation</a></li>
+                    <li><a href="https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes" target="_blank" rel="noopener">WSTG - Latest | OWASP Foundation</a></li>
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/Cookies" target="_blank" rel="noopener">Secure cookie configuration - Security | MDN</a></li>
+                    <li><a href="https://www.invicti.com/learn/cookie-security-flags" target="_blank" rel="noopener">Cookie Security Flags | Invicti</a></li>
+                </ul>
+            </article>
+        </main>
+        <footer class="site-footer">
+            <span>© 2026 adamgsec </span>
+            <span>&lt;/&gt; Powered by HTML &amp; CSS</span>
+        </footer>
+    </div>
+</body>
+</html>
