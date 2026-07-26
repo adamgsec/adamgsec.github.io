@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 1. Update the title below to match your post -->
+    <title>adamgsec | CSTM Exam: The Straight‑Up Guide</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="../favicon.ico">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+</head>
+<body>
+    <div class="page page-blog">
+        <header class="site-header">
+            <a href="../index.html" class="site-title">adamgsec</a>
+            <nav class="site-nav">
+                <a href="../index.html">Home</a>
+                <a href="../acolades.html">Acolades & Certifications</a>
+            </nav>
+        </header>
+        <main class="post-layout">
+
+            <!--
+                SIDE NAVIGATION (TABLE OF CONTENTS)
+                ------------------------------------
+                Each <li><a href="#section-id">Label</a></li> below must match
+                an id="section-id" on an <h2> further down in the article.
+                Add, remove, or reorder items here to match your headings.
+                This automatically hides itself on screens under 900px wide.
+            -->
+            <aside class="toc">
+                <span class="toc-label">On this page</span>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#pre-requisites">Pre-requisites</a></li>
+                    <li><a href="#practical">What to Expect on the Day: Practical Exam</a></li>
+                    <li><a href="#technical">What to Expect on the Day: Technical Exam</a></li>
+                    <li><a href="#report">What to Expect on the Day: Report Writing</a></li>
+                     <li><a href="#passorfail">What is Required to Pass the Exam?</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                    <li><a href="#references">References & Resources</a></li>
+                    <!-- Add more <li><a href="#your-id">Your Label</a></li> as needed -->
+                </ul>
+            </aside>
+
+            <article class="post-content">
+
+                <!-- 2. Update the date -->
+                <span class="post-eyebrow">JUL 26, 2026</span>
+
+                <!-- 3. Update the post title -->
+                <h1>CSTM Exam: The Straight‑Up Guide</h1>
+
+                <!--
+                    4. Each section below is one heading + one or more paragraphs.
+                    IMPORTANT: the id on the <h2> must exactly match the href
+                    in the sidebar above (e.g. id="introduction" pairs with
+                    href="#introduction").
+                -->
+            <div class="warning-box"
+                <p>
+                <b class="warning-label">NOTE:</b> The CSTM exam format has been changed since I have sat the exam in November of 2025. I aim to keep this guide relevant by providing general
+                advice into the exam format, what to expect on the day, and areas of focus for the exam.
+                </p>
+            </div>
+                <p>
+            <div class="warning-box">
+                <p>
+                <b class="warning-label">NOTE 2:</b> As to keep the exam fair for everyone, this guide will not disclose anything that is not already publicly accessible on The Cyber Scheme's website.
+                However, I aim to provide more insight into what to expect on the day to help participants feel more confident, and any techniques that will helpful 
+                in tackling the exam
+                </p>
+            </div>
+
+                <h2 id="introduction">Introduction</h2>
+                <p>
+                    The Cyber Scheme Team Member (CSTM) Exam is becoming increasingly popular in the UK. Due to the requirements to perform CHECK penetration testing services,
+                    the CSTM is the quickest way forward into achieving this. The CSTM also allows you to become a Cyber Essentials Plus Lead Assessor, another scheme owned by
+                    the National Cyber Security Centre (NCSC), which is also in high demand.
+                </p>
+                 <p>
+                    The CSTM exam is aimed to be introductory and focused for beginners, but this does not mean that it is not challenging. 
+                </p>
+                <p>
+                    You are expected to know what the vulnerabilities you discover are, how they work, and what the business implications of them to an organisation are. You <b>NEED</b> to know this.
+                    If you fail to explain how you discovered something, you cannot evidence your findings, or fail to explain how that vulnerability works, you run the risk of losing points or failing the exam altogether. This means that your technical ability
+                    needs to be just as good as your practical ability.
+                </p>
+                 <p>
+                    Personally, I sat and accomplished the Cyber Scheme Team Member certification in November of 2025. While preparing for this exam, there was very little online
+                    about what to expect and where I should divert my attention. This guide aims to support Cyber Security professionals into tackling this exam and what to expect on the day. It will also focus on what you will need to prepare
+                    going forward.
+                </p>
+                <p>
+                    All offical Cyber Scheme resources will be linked throughout the blog to ensure that you can find the official copies. However, be aware that these are also subject to change, and may not be updated for a while.
+                </p>
+
+                <h2 id="pre-requisites">Pre-requisites</h2>
+                <p>
+                    There are a few pre-requisites that you will need to be aware of on the day of the exam. Without these, you run the risk of not being able to sit the exam or failing to complete certain questions. These are the following:
+                </p>
+                <ul>
+                    <li>A Laptop with an Ethernet Adapter and HDMI Output - This is needed to connect to the CSTM Exam network and be monitored by the invigilator.</li>
+                    <li>An RJ45 Ethernet Cable - These were provided on the day, but it's best practice to bring one.</li>
+                    <li>A Valid form of UK Photo ID. (Passport or Drivers License) - Very important. Without this, you will not be allowed to sit the exam</li>
+                    <li>A valid version of the Nessus Vulnerability Scanner. Be aware that Nessus Essentials has a limit to 5 IPs Addresses that can be used, so, if already working as a Penetration Tester, a paid version is better.</li>
+                    <li>A Linux Operating System - Personally, I sat the exam with a base Kali OS. I think this is easier than running a VM, and it comes pre-installed with everything you need.</li>
+                    <li>Typical Penetration Testing Toolkit - Vague as not to give away too much, but think of anything that you may use in a Penetration Test or Capture-The-Flag Style event.</li>
+                    <li>Organised Notes around the major topics of the exam - This is an open-book exam, therefore notes are allowed. Bring as many on the main topics that you can.</li>
+                </ul>
+
+                <p>
+                    As per the Cyber Scheme website, the pre-required skillset for the web applicaton and infrastructure test are as follows:
+                </p>
+                <b>NETWORKING:</b>
+                <ul>
+                    <li>Understanding common networking protocols such as SMTP, NFS, FTP, DNS.</li>
+                    <li>Service enumeration.</li>
+                    <li>The ability to map a network.</li>
+                    <li>Port scanning.</li>
+                    <li>Identification of valuable hosts on a network.</li>
+                </ul>
+                <b>WEB APPLICATION:</b>
+                <ul>
+                    <li>Understanding basic web application vulnerabilities such as SQLi, XSS, LFI/RFI.</li>
+                </ul>
+                <b>HOST EXPLOITATION:</b>
+                <ul>
+                    <li>Understanding of differences between OS’s.</li>
+                    <li>Identification of server vulnerabilities.</li>
+                    <li>Exploitation of server vulnerabilities.</li>
+                    <li>Basic methods of privilege escalation.</li>
+                </ul>
+
+                <h2 id="practical">What to Expect on the Day: Practical Exam</h2>
+                <p>
+                    With no additional extra time, the CSTM exam runs for <b>2 hours</b> and is aimed at testing your ability to enumerate and exploit both a small web application and infrastructure estate.
+                    If you are elligible for extra exam time, the exam will run for <b>2 hours and 30 minutes</b>.
+                </p>
+                <p>
+                    For the exam you will be required to connect to their network that does not have DHCP. <b>You are given</b> the network details that you will need to configure on your device.
+                    You do not need to do this through the command-line interface (CLI) anymore, so do not waste your time doing it that way. In my opinion, it is more pain than it is worth, and will not grant you 
+                    extra points. You want to make the exam as easiest and as less stressful as you can. This is done during the exam, after the time has started, and you <b>MUST</b> be able to do this. If you cannot configure your laptop's network settings and connect to the network,
+                    you <b>WILL</b> fail before the exam properly begins. However, if you have very basic networking knowledge, this is very easy and will not take longer than a minute, just practice this before hand at home if you're unsure.
+                </p>
+                <div class="note-box">
+                    <b class="note-label">Take a Note:</b> This is an extremely common failing point for elligble candidates. I would advise that you master this before the exam if you feel unsure. This will ease a lot of stress and exam nerves.
+                </p>
+                </div>
+                <p>
+                    After successfully connecting to the Cyber Scheme network, the practical exam component officially begins. You will be given a sheet of questions to guide you, and IP / Domain information of the machines.
+                    You will not need to play detective too much, but you will be expected to know of common application pitfalls, and where to find the vulnerabilities listed on the question sheet.
+                    The questions will be vague, for instance, "Find the SQL Injection Vulnerability". This tells you what to look for, but the rest is up to you.
+                </p>
+                 <p>
+                    You can tackle the questions in any order, but I recommend tackling them in the order presented on the question sheet, as some information enumerated may be relevant later on in the question set. You are expected to evidence all testing
+                    and keep track of any findings, and or useful information that you have discovered.
+                </p>
+                 <p>
+                    Similarly, the infrastructure part of the questions is very similar, it will be told what is expected of you, but you must use the scoping sheet provided as to not scan or exploit any machines that are out-of-scope.
+                    Moreover, the scoping sheet will provide all relevant IP / Domain information needed for the questions. 
+                 </p>
+                 <p>
+                    As stated on The Cyber Scheme website, they're expecting you to know of common network protocols, their pitfalls, functionality, and any common vulnerabilities associated with that service. I would advise that you do not go around brute-forcing
+                    protocols straight away, but analyse the information you have at hand and always take the most sensible and fastest option to the solution first. You're expected to have a more advanced level of knowledge here and it's crucial that you do not waste time.
+                 </p>
+
+                 <h2 id="technical">What to Expect on the Day: Technical Exam</h2>
+                <p>
+                    As per the new format of the exam, at the start of the day, you will be given a question sheet of <b>6</b> out of <b>100+</b> technical questions that are readily available on The Cyber Scheme's website. You should receive one question per topic.
+                    This is linked <a href="https://thecyberscheme.org/wp-content/uploads/2026/01/CSTM-technical-interview-questions.pdf" target="_blank" rel="noopener noreferrer">here</a> It is vital that you learn or memorise the answers to these questions. Some of them are easier than others, depending on your skillset or knowledge.
+                </p>
+                <p>
+                    The Cyber Scheme do not expect you to be an expert on all of the questions, but they do expect you to know them to a satisfactory level. As daunting as it seems, the invigilator is very fair and will prompt you if they feel that you know the answer.
+                    They're very aware of the exam nerves on the day, and that you're doing this without use of the Internet.
+                </p>
+                 <div class="note-box">
+                    <b class="note-label">Take a Note:</b> Again, become very familair with the question set listed above. The new format requires you to know these, and you are no longer allowed any research time.
+                </div>
+
+                <p>The technical interview will run for about 5-10 minutes and will be voice recorded for marking purposes.</p>
+
+                <h2 id="report">What to Expect on the Day: Report Writing</h2>
+                <p>
+                    During your practical exam, you're expected to write a small executive summary detailing what you have found and the business implications for the mock organisations. 
+                    It is really important that you keep this to an executive level and do not go overboard with too much technical detail.
+                </p>
+                <p>
+                    Depending on your writing ability, I would leave at least <b>10-15</b> minutes of the exam time for this exam element. This is to make sure that you do not stress and rush it. If the examiner deems the report writing element satisfactory,
+                    then you can fail the entire exam, despite maybe fully completing both the practical and technical aspects.
+                </p>
+                <div class="danger-box">
+                    <b class="danger-label">You're not allowed to take a pre-written report or template into the exam as notes. If you're caught doing this, you will FAIL the exam.</b>
+                </div>
+                 <h2 id="passorfail">What is Required to Pass the Exam?</h2>
+                <p>
+                    You will be happy to know that The Cyber Scheme do not expect you to pass or know everything that is on the exam. However, they do expect you to know most of it.
+                    Listed below will be the passing criteria for the exam, and I will explain what that means for you as a candidate. Please see below:
+
+                    <div class="table-wrap">
+    <table class="post-table">
+        <thead>
+            <tr>
+                <th>Criteria</th>
+                <th>Score Required</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>Practical and Viva</b></td>
+                <td><b>6 / 7</b></td>
+            </tr>
+            <tr>
+                <td><b>Report Writing</b></td>
+                <td><b>2 / 3</b></td>
+            </tr>
+            <tr>
+                <td><b>Technical Interview</b></td>
+                <td><b>5 / 6</b></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p class="table-caption">Table 1: CSTM Passing Criteria</p>
+<p>As you can see from Table 1, you are not required to pass every aspect of the exam, however, it is close.</p>
+<p>Please see below, the different elements that the exam is marked on. This means you can fail at least one element from the bolded criteria.</p>
+
+                    <div class="table-wrap">
+    <table class="post-table">
+<thead>
+            <tr>
+                <th>Criteria</th>
+                <th>FAIL</th>
+                <th>PASS</th>
+                <th>Comment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>Practical and Viva</b></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Application Enumeration</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Application Information Disclosure</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Application Exploitation and Mitigation</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Network Mapping and Associated Protocols</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Enumeration and Exploitation of Windows Devices</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Enumeration and Exploitation of Linux Devices</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Post Exploitation</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><b>Report Writing</b></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Business Risks / Implications</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Summary</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Coherent, Well Written Report Element</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><b>Technical Interview</b></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Current Technology</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Older Technology</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Networking</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Protocols</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Mitigation</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Laws, Ethics, Scope and Risk</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p class="table-caption">Table 2: CSTM Passing Criteria</p>
+                </p>
+                <h2 id="conclusion">Conclusion & Takeaways</h2>
+                <p>
+                    In conclusion, the exam is far from easy, however, it is very well doable with a moderate amount of preparation time. If you are currently working as a penetration tester, then most of the concepts will not be new to you.
+                </p>
+                <p>The exam not only challenges your practical ability, it asseses whether you can communicate the vulnerabiliies to a wide range of audiences and whether you know why you're doing something or if you're following learning from a CTF.</p>
+                <p> If there are any elements that you do not feel confident on from this post, then you know that you should make this a focus point. However, remember that all exam will be stressful, but the inviglators are extremely fair and will do their best to put your mind at ease.</p>
+                <p>I hope this blog helped, and, if you're sitting the exam soon, then Good Luck! You will smash it!</p>
+
+                <h2 id="references">References & Resources</h2>
+                <p>
+                    Please find below a list of useful references and resources that you can use to prepare for this exam.
+                </p>
+                <ul class="ref-list">
+                    <li><a href="https://thecyberscheme.org/cstm-exam/" target="_blank" rel="noopener">CSTM Exam | The Cyber Scheme</a></li>
+                    <li><a href="https://thecyberscheme.org/wp-content/uploads/2025/08/CSTM-syllabus-2025.pdf" target="_blank" rel="noopener">CSTM Syllabus | The Cyber Scheme</a></li>
+                    <li><a href="https://thecyberscheme.org/wp-content/uploads/2026/01/CSTM-technical-interview-questions.pdf" target="_blank" rel="noopener">CSTM Technical Questions | The Cyber Scheme</a></li>
+                    <li><a href="https://thecyberscheme.org/cstm-exam-joining-instructions/" target="_blank" rel="noopener">CSTM Joining Instructions | The Cyber Scheme</a></li>
+                    <li><a href="https://academy.hackthebox.com/" target="_blank" rel="noopener">HackTheBox Academy | HackTheBox</a></li>
+                    <li><a href="https://tryhackme.com/hacktivities" target="_blank" rel="noopener">TryHackMe Learn | TryHackMe</a></li>
+                </ul>
+            </article>
+        </main>
+        <footer class="site-footer">
+            <span>© 2026 adamgsec </span>
+            <span>&lt;/&gt; Powered by HTML &amp; CSS</span>
+        </footer>
+    </div>
+</body>
+</html>
